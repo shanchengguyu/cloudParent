@@ -1,0 +1,26 @@
+nacos上的配置
+application.dev.yml 如下：
+Data ID:  application-dev.yml
+Group:  cloud-parent
+
+server:
+  port: 3307
+spring:
+  application:
+    name: cloud-parent-gateway
+  cloud:
+    gateway:
+      routes:
+    #    没有固定的规则但是要求唯一，建议配合服务名
+        - id: productor-routh
+         #匹配服务提供方的路由地址
+          uri: http://localhost:3308
+          #断言，路径相匹配的进行路由
+          predicates:
+            - Path=/productor/**  
+    nacos:
+      discovery:
+        server-addr: 127:0:0:1:8848 
+         
+
+
